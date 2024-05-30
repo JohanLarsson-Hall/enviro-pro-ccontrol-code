@@ -1,0 +1,28 @@
+```python
+import time
+import random
+
+def dance():
+    print("Robot: *starts dancing*")
+    for _ in range(5):  # Let's make the robot dance for 5 moves
+        move = random.choice(["twirl", "shake", "spin", "moonwalk", "robot"])
+        print(f"Robot: *{move} move*")
+        time.sleep(1)  # Pause for 1 second between moves
+    print("Robot: *stops dancing*")
+
+def main():
+    while True:
+        enable_dance = input("Do you want the robot to dance? (Y/n): ").strip().lower()
+        if enable_dance == 'y':
+            dance()
+        elif enable_dance == 'n':
+            print("Robot: Okay, no dancing today.")
+            break
+        else:
+            print("Robot: I'm sorry, I didn't understand that.")
+
+if __name__ == "__main__":
+    main()
+```
+
+This version of the script adds a `dance()` function that randomly selects dance moves from a list and performs them for a set number of times. Each move is printed to the console, and there's a 1-second pause between moves.
