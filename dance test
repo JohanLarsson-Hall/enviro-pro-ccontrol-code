@@ -1,11 +1,18 @@
 import time
 import random
+from adafruit_servokit import ServoKit
+
+# Initialize the servo kit for controlling 16 servos
+kit = ServoKit(channels=16)
 
 def dance():
     print("Robot: *starts dancing*")
     for _ in range(5):  # Let's make the robot dance for 5 moves
-        move = random.choice(["twirl", "shake", "spin", "moonwalk", "robot"])
-        print(f"Robot: *{move} move*")
+        for i in range(16):
+            move = random.uniform(0, 180)  # Generate a random angle between 0 and 180
+            kit.servo[i].angle = move  # Set the angle for servo i
+            time.sleep(0.5)  # Pause for 0.5 seconds between servo movements
+        print(f"Robot: *dance move*")
         time.sleep(1)  # Pause for 1 second between moves
     print("Robot: *stops dancing*")
 
@@ -22,6 +29,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-```
-
-This version of the script adds a `dance()` function that randomly selects dance moves from a list and performs them for a set number of times. Each move is printed to the console, and there's a 1-second pause between moves.
